@@ -52,9 +52,8 @@ async function generatePDF(htmlContent) {
     const page = await browser.newPage();
     await page.setContent(htmlContent);
 
-    const buffer = await page.pdf({ format: "A4", printBackground: true });
-    const base64 = await new Buffer.from(buffer)
+    const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
 
     await browser.close();
-    return base64
+    return pdfBuffer
 }
