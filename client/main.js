@@ -1,22 +1,30 @@
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
 Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+
 });
 
 Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
+
 });
 
 Template.hello.events({
   'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
+    Meteor.call('generatePDF', (error, pdf) => {
+      console.log(error)
+      console.log(pdf)
+      let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdf)))
+      forceDownload(base64, 'test.pdf')
+    })
   },
 });
+
+
+function forceDownload(pdf_url, pdf_name) {
+  let link = document.createElement('a');
+  link.href = `data:image/png;base64,${pdf_url}`;
+  link.download = pdf_name;
+  link.dispatchEvent(new MouseEvent('click'));
+}
