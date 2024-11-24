@@ -8,7 +8,9 @@
 </body>
 
 <template name="hello">
-  <button type="button" class="btn btn-large btn-primary simple-pdf">Simple PDF</button>
-  <button type="button" class="btn btn-success static-template-pdf">Static Template PDF</button>
-  <button type="button" class="btn btn-danger dynamic-template-pdf">Dynamic Template Data PDF</button>
+  <div class="d-flex d-space-between">
+    <button type="button" class="btn btn-primary simple-pdf" disabled="{{loading}}">Simple PDF</button>
+    <button type="button" class="btn btn-success static-template-pdf" disabled="{{loading}}">Static Template PDF</button>
+    <button type="button" class="btn btn-danger dynamic-template-pdf" disabled="{{loading}}">Dynamic Template Data PDF</button>
+  </div>
 </template>
