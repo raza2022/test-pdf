@@ -11,12 +11,35 @@ Template.hello.helpers({
 });
 
 Template.hello.events({
-  'click button'(event, instance) {
-    Meteor.call('generatePDF', (error, pdf) => {
-      console.log(error)
-      console.log(pdf)
-      let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdf)))
-      forceDownload(base64, 'test.pdf')
+  'click .simple-pdf'(event, instance) {
+    Meteor.call('puppeteerPDF', (error, pdf) => {
+      if(error) {
+        alert("Something went wrong. If this problem persists, please contact customer support.")
+      } else {
+        let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdf)))
+        forceDownload(base64, 'test.pdf')
+      }
+    })
+  },
+  'click .static-template-pdf'(event, instance) {
+    Meteor.call('templateStaticPDF', (error, pdf) => {
+      if(error) {
+        alert("Something went wrong. If this problem persists, please contact customer support.")
+      } else {
+        let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdf)))
+        forceDownload(base64, 'test.pdf')
+      }
+    })
+  },
+
+  'click .dynamic-template-pdf'(event, instance) {
+    Meteor.call('templateDynamicPDF', (error, pdf) => {
+      if(error) {
+        alert("Something went wrong. If this problem persists, please contact customer support.")
+      } else {
+        let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdf)))
+        forceDownload(base64, 'test.pdf')
+      }
     })
   },
 });

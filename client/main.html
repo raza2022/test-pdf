@@ -4,10 +4,11 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor (PDF TEST)!</h1>
   {{> hello}}
 </body>
 
 <template name="hello">
-  <button>Generate PDF</button>
+  <button type="button" class="btn btn-large btn-primary simple-pdf">Simple PDF</button>
+  <button type="button" class="btn btn-success static-template-pdf">Static Template PDF</button>
+  <button type="button" class="btn btn-danger dynamic-template-pdf">Dynamic Template Data PDF</button>
 </template>
