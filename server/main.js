@@ -10,18 +10,7 @@ Meteor.startup(() => {
 Meteor.methods({
     generatePDF: async () => {
         const A = "invoice";
-        const htmlContent = `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  </head>
-  <body>
-  <h2>Approve Page ,${A}</h2>
-  </body>
-  </html>
-  `;
+        const htmlContent = await Assets.getTextAsync('test-pdf.html');
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setContent(htmlContent);
