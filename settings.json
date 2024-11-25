@@ -1,0 +1,18 @@
+{
+  "packages": {
+    "mongo": {
+      "options": {
+        "tlsAllowInvalidCertificates": true
+      }
+    }
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://raza2022:6BSuompQsQXTtmGLy@SG-galaxycluster-38726.servers.mongodirector.com:27017,SG-galaxycluster-38727.servers.mongodirector.com:27017/test-pdf-meteorapp-com?replicaSet=RS-galaxycluster-0&ssl=true"
+    },
+    "baseImage": {
+      "repository": "meteor/galaxy-puppeteer",
+      "tag": "latest"
+    }
+  }
+}
