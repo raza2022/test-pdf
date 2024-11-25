@@ -29,14 +29,13 @@ Template.hello.events({
   },
 });
 
-
+// this will get either error or base64 (PDF) from server
 function processResult(error, result) {
   Session.set('loading', false);
   if(error) {
     alert("Something went wrong. If this problem persists, please contact customer support.")
   } else {
-    let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(result)))
-    forceDownload(base64, 'test.pdf')
+    forceDownload(result, 'test.pdf')
   }
 }
 

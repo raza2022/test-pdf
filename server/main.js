@@ -53,7 +53,7 @@ async function generatePDF(htmlContent) {
     await page.setContent(htmlContent);
 
     const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
-
     await browser.close();
-    return pdfBuffer
+    let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdfBuffer)))
+    return base64
 }
