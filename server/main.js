@@ -48,7 +48,13 @@ Meteor.methods({
 // Generate PDF using puppeteer
 // @param (html_string)
 async function generatePDF(htmlContent) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage'
+        ]
+    });
     const page = await browser.newPage();
     await page.setContent(htmlContent);
 
