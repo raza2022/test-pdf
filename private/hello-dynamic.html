@@ -1,4 +1,65 @@
-<div style="text-align: center">
-    <h1>Test with dynamic Template Data</h1>
-    <p>Hello {{userName}}! How's Day </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Letter</title>
+    <style>
+        body {
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .letter {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .employee-info {
+            margin-bottom: 20px;
+        }
+
+        .closing {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="letter">
+    <div class="header">
+        <h2>Appointment Letter</h2>
+    </div>
+
+    <p>
+        Dear <span id="employeeName">{{employeeName}}</span>,
+    </p>
+
+    <p>
+        We are pleased to inform you that you have been appointed as an employee at {{companyName}} Company. Your dedication and skills have earned you the position with the following details:
+    </p>
+
+    <div class="employee-info">
+        <p><strong>Employee ID:</strong> <span id="employeeId">{{employeeId}}</span></p>
+    </div>
+
+    <p>
+        Your employment with {{companyName}} Company will commence on <span id="startDate">{{startDate}}</span>. Please report to the HR department on your joining date for further orientation and formalities.
+    </p>
+
+    <p>
+        We believe that your expertise will contribute significantly to our team, and we look forward to your valuable contributions.
+    </p>
+
+    <div class="closing">
+        <p>Best regards,</p>
+        <p>The {{companyName}} Team</p>
+    </div>
 </div>
+</body>

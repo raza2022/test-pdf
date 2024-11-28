@@ -10,7 +10,7 @@ Meteor.methods({
     puppeteerPDF: async () => {
         let htmlContent;
         try {
-            htmlContent = await Assets.getTextAsync('test-pdf.html');
+            htmlContent = `<h1>Test is always best</h1>`;
             return await generatePDF(htmlContent)
         } catch (error) {
             if (error) {
@@ -35,9 +35,17 @@ Meteor.methods({
 
     templateDynamicPDF: async () => {
         let htmlContent;
+        // it can be dynamic from client or db
+        // currently hardcoded for demo purpose
+        let data = {
+            employeeName: 'Meteor Noob',
+            employeeId: '42102541',
+            startDate: new Date(),
+            companyName: 'BOT X',
+        }
         try{
             SSR.compileTemplate('emailText', await Assets.getTextAsync('hello-dynamic.html'));
-            htmlContent = SSR.render( 'emailText', {userName: 'Meteor Noob'})
+            htmlContent = SSR.render( 'emailText', data)
             return await generatePDF(htmlContent)
         } catch (error) {
             throw error
@@ -58,7 +66,11 @@ async function generatePDF(htmlContent) {
     const page = await browser.newPage();
     await page.setContent(htmlContent);
 
-    const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
+    const pdfBuffer = await page.pdf({
+        format: "A4",
+        printBackground: true,
+        preferCSSPageSize: true
+    });
     await browser.close();
     let base64 = btoa(String.fromCharCode.apply(null,new Uint8Array(pdfBuffer)))
     return base64
